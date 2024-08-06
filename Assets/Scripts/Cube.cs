@@ -3,13 +3,12 @@ using UnityEngine;
 [RequireComponent(typeof(MeshRenderer))]
 public class Cube : MonoBehaviour
 {
-    [SerializeField] private RandomGenerator _randomGenerator;
     [SerializeField] private CubeSpawner _cubeSpawner;
 
     private MeshRenderer _meshRenderer;
     private float _chanceDisintegration = 100f;
 
-    public float NumberDecays { get; private set; } = 1;
+    public float ChanceDisintegration => _chanceDisintegration;
 
     private void Awake()
     {
@@ -26,21 +25,14 @@ public class Cube : MonoBehaviour
         float minChance = 0f;
         float maxChance = 100f;
 
-        float randomNumber = _randomGenerator.GetRandomChance(minChance, maxChance);
+        float randomNumber = Random.Range(minChance, maxChance);
 
-        if (randomNumber <= _chanceDisintegration / NumberDecays)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return randomNumber <= ChanceDisintegration;
     }
 
-    public void PrepareGeneration(float numberDecays)
+    public void PrepareGeneration()
     {
-        float multiplier = 2f;
+        float divider = 2f;
         float hueMin = 0f;
         float hueMax = 1f;
         float saturationMin = 0f;
@@ -48,8 +40,15 @@ public class Cube : MonoBehaviour
         float alphaMin = 0f;
         float alphaMax = 1f;
 
-        NumberDecays = numberDecays * multiplier;
-        gameObject.transform.localScale /= NumberDecays;
-        _meshRenderer.material.color = _randomGenerator.GetRandomColor(hueMin, hueMax, saturationMin,saturationMax, alphaMin, alphaMax);
+        transform.localScale /= divider;
+        _meshRenderer.material.color = Random.ColorHSV(hueMin, hueMax, saturationMin,saturationMax, alphaMin, alphaMax);
+    }
+
+    public void SetSplitChance(float chance)
+    {
+        float minChance = 0;
+        float maxChance = 100;
+
+        _chanceDisintegration = Mathf.Clamp(chance, minChance, maxChance);
     }
 }

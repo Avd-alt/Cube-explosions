@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CubeSpawner : MonoBehaviour
 {
-    [SerializeField] private RandomGenerator _randomGenerator;
-
     private float _minCubesSpawn = 2f;
     private float _maxCubesSpawn = 6f;
 
@@ -13,22 +12,26 @@ public class CubeSpawner : MonoBehaviour
 
     public void TryCreateCube(Cube mainCube)
     {
+        float chanceDivider = 2f;
+        float newChanceDisintegration = mainCube.ChanceDisintegration / chanceDivider;
+
         if (mainCube.IsDisintegration())
         {
-            float randomCountSpawn = _randomGenerator.GetRandomChance(_minCubesSpawn, _maxCubesSpawn);
+            float randomCountSpawn = Random.Range(_minCubesSpawn, _maxCubesSpawn);
 
-            Quaternion rotationCube = _randomGenerator.GetRandomRotation();
+            Quaternion rotationCube = Random.rotation;
 
-            List<Rigidbody> cubeList = new();
+            List<Rigidbody> cubes = new();
 
             for (int i = 0; i < randomCountSpawn; i++)
             {
                 Cube newCube = Instantiate(mainCube, mainCube.transform.position, rotationCube);
-                newCube.PrepareGeneration(mainCube.NumberDecays);
-                cubeList.Add(newCube.GetComponent<Rigidbody>());
+                newCube.PrepareGeneration();
+                newCube.SetSplitChance(newChanceDisintegration);
+                cubes.Add(newCube.GetComponent<Rigidbody>());
             }
 
-            CubeSpawned?.Invoke(cubeList, mainCube);
+            CubeSpawned?.Invoke(cubes, mainCube);
         }
 
         Destroy(mainCube.gameObject);

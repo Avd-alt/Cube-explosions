@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 135689761}
   - component: {fileID: 135689760}
-  - component: {fileID: 135689762}
   - component: {fileID: 135689763}
   m_Layer: 0
   m_Name: Spawner1
@@ -154,7 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc2cecef1bea734a98958418f79f688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _randomGenerator: {fileID: 135689762}
 --- !u!4 &135689761
 Transform:
   m_ObjectHideFlags: 0
@@ -170,18 +168,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &135689762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 135689759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6886464b394068246a88230e4a6f983d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &135689763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -652,8 +638,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.008390966, y: 0.9177117, z: 0.01925134, w: -0.39669174}
-  m_LocalPosition: {x: 20.38095, y: 7.6804037, z: 20.37941}
+  m_LocalRotation: {x: 0.06282192, y: 0.4515854, z: -0.031857494, w: 0.88944316}
+  m_LocalPosition: {x: -31.549068, y: 7.7725782, z: -23.207117}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -672,7 +658,6 @@ GameObject:
   - component: {fileID: 1004687881}
   - component: {fileID: 1004687880}
   - component: {fileID: 1004687879}
-  - component: {fileID: 1004687885}
   - component: {fileID: 1004687884}
   - component: {fileID: 1004687883}
   m_Layer: 0
@@ -788,20 +773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d52611f063b9849b7d48019c513d7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _randomGenerator: {fileID: 1004687885}
   _cubeSpawner: {fileID: 2107562230}
---- !u!114 &1004687885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004687878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6886464b394068246a88230e4a6f983d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1099666925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,7 +980,6 @@ GameObject:
   - component: {fileID: 1438283103}
   - component: {fileID: 1438283104}
   - component: {fileID: 1438283105}
-  - component: {fileID: 1438283106}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -1093,7 +1064,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d52611f063b9849b7d48019c513d7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _randomGenerator: {fileID: 1438283106}
   _cubeSpawner: {fileID: 135689760}
 --- !u!65 &1438283104
 BoxCollider:
@@ -1124,18 +1094,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1438283106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1438283097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6886464b394068246a88230e4a6f983d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1466113885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,7 +1205,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2107562231}
   - component: {fileID: 2107562230}
-  - component: {fileID: 2107562229}
   - component: {fileID: 2107562232}
   m_Layer: 0
   m_Name: Spawner2
@@ -1256,18 +1213,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2107562229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2107562228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6886464b394068246a88230e4a6f983d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2107562230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1280,7 +1225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc2cecef1bea734a98958418f79f688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _randomGenerator: {fileID: 2107562229}
 --- !u!4 &2107562231
 Transform:
   m_ObjectHideFlags: 0
