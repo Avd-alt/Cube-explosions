@@ -7,7 +7,9 @@ public class Cube : MonoBehaviour
 
     private MeshRenderer _meshRenderer;
     private float _chanceDisintegration = 100f;
+    private float _multiplierExplosion = 1f;
 
+    public float MultiplierExplosion => _multiplierExplosion;
     public float ChanceDisintegration => _chanceDisintegration;
 
     private void Awake()
@@ -50,5 +52,10 @@ public class Cube : MonoBehaviour
         float maxChance = 100;
 
         _chanceDisintegration = Mathf.Clamp(chance, minChance, maxChance);
+    }
+
+    public void SetMultiplier(float newMultiplier)
+    {
+        _multiplierExplosion = newMultiplier;
     }
 }
