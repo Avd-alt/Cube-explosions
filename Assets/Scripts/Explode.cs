@@ -37,8 +37,9 @@ public class Explode : MonoBehaviour
 
     private void ExplodeDestroyedCube(Cube mainCube)
     {
-        float radiusExplousion = 5f * mainCube.MultiplierExplosion;
-        float explosionForce = 10f * mainCube.MultiplierExplosion;
+        float initialValue = 10f;
+        float radiusExplousion = initialValue * mainCube.MultiplierExplosion;
+        float explosionForce = initialValue * mainCube.MultiplierExplosion;
 
         foreach (Rigidbody cube in GetCubesForExplode(mainCube.transform,radiusExplousion))
         {

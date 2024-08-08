@@ -5,10 +5,10 @@ using Random = UnityEngine.Random;
 
 public class CubeSpawner : MonoBehaviour
 {
-    [SerializeField] private Cube _cube;
+    private const float MinCubesSpawn = 2f;
+    private const float MaxCubesSpawn = 6f;
 
-    private float _minCubesSpawn = 2f;
-    private float _maxCubesSpawn = 6f;
+    [SerializeField] private Cube _cube;
 
     public event Action <List<Rigidbody>, Transform> CubeSpawned;
     public event Action<Cube> CubeDestroyed;
@@ -32,7 +32,7 @@ public class CubeSpawner : MonoBehaviour
 
         if (mainCube.IsDisintegration())
         {
-            float randomCountSpawn = Random.Range(_minCubesSpawn, _maxCubesSpawn);
+            float randomCountSpawn = Random.Range(MinCubesSpawn, MaxCubesSpawn);
 
             Quaternion rotationCube = Random.rotation;
 
