@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CubeSpawner))]
 public class Explode : MonoBehaviour
 {
     private CubeSpawner _spawnerCubes;

@@ -1,16 +1,18 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(MeshRenderer))]
 public class Cube : MonoBehaviour
 {
-    [SerializeField] private CubeSpawner _cubeSpawner;
-
     private MeshRenderer _meshRenderer;
     private float _chanceDisintegration = 100f;
     private float _multiplierExplosion = 1f;
 
     public float MultiplierExplosion => _multiplierExplosion;
     public float ChanceDisintegration => _chanceDisintegration;
+
+    public event Action <Cube> CubeClicked;
 
     private void Awake()
     {
@@ -19,7 +21,7 @@ public class Cube : MonoBehaviour
 
     private void OnMouseDown()
     {
-        _cubeSpawner.TryCreateCube(this);
+        CubeClicked?.Invoke(this);
     }
 
     public bool IsDisintegration()
@@ -32,7 +34,7 @@ public class Cube : MonoBehaviour
         return randomNumber <= ChanceDisintegration;
     }
 
-    public void PrepareGeneration()
+    public void Init(float chance, float newMultiplier)
     {
         float divider = 2f;
         float hueMin = 0f;
@@ -41,21 +43,12 @@ public class Cube : MonoBehaviour
         float saturationMax = 1f;
         float alphaMin = 0f;
         float alphaMax = 1f;
-
-        transform.localScale /= divider;
-        _meshRenderer.material.color = Random.ColorHSV(hueMin, hueMax, saturationMin,saturationMax, alphaMin, alphaMax);
-    }
-
-    public void SetSplitChance(float chance)
-    {
         float minChance = 0;
         float maxChance = 100;
 
+        transform.localScale /= divider;
         _chanceDisintegration = Mathf.Clamp(chance, minChance, maxChance);
-    }
-
-    public void SetMultiplier(float newMultiplier)
-    {
         _multiplierExplosion = newMultiplier;
+        _meshRenderer.material.color = Random.ColorHSV(hueMin, hueMax, saturationMin,saturationMax, alphaMin, alphaMax);
     }
 }

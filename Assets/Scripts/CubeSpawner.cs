@@ -5,13 +5,25 @@ using Random = UnityEngine.Random;
 
 public class CubeSpawner : MonoBehaviour
 {
+    [SerializeField] private Cube _cube;
+
     private float _minCubesSpawn = 2f;
     private float _maxCubesSpawn = 6f;
 
     public event Action <List<Rigidbody>, Transform> CubeSpawned;
     public event Action<Cube> CubeDestroyed;
 
-    public void TryCreateCube(Cube mainCube)
+    private void OnEnable()
+    {
+        _cube.CubeClicked += TryCreateCube;
+    }
+
+    private void OnDisable()
+    {
+        _cube.CubeClicked -= TryCreateCube;
+    }
+
+    private void TryCreateCube(Cube mainCube)
     {
         float numberIncreaseMultiplier = 1f;
         float chanceDivider = 2f;
@@ -29,10 +41,15 @@ public class CubeSpawner : MonoBehaviour
             for (int i = 0; i < randomCountSpawn; i++)
             {
                 Cube newCube = Instantiate(mainCube, mainCube.transform.position, rotationCube);
-                newCube.PrepareGeneration();
-                newCube.SetSplitChance(newChanceDisintegration);
-                newCube.SetMultiplier(newMultiplierExplode);
-                cubes.Add(newCube.GetComponent<Rigidbody>());
+                newCube.Init(newChanceDisintegration, newMultiplierExplode);
+                newCube.CubeClicked += TryCreateCube;
+
+                Rigidbody cubeRigidbody;
+
+                if(newCube.TryGetComponent<Rigidbody>(out cubeRigidbody))
+                {
+                    cubes.Add(cubeRigidbody);
+                }
             }
 
             CubeSpawned?.Invoke(cubes, mainCube.transform);
@@ -41,6 +58,8 @@ public class CubeSpawner : MonoBehaviour
         {
             CubeDestroyed?.Invoke(mainCube);
         }
+
+        mainCube.CubeClicked -= TryCreateCube;
 
         Destroy(mainCube.gameObject);
     }
